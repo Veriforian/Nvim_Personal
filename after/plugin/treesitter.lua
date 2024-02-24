@@ -18,4 +18,14 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  refactor = {
+	  navigation = {
+		  enable = true,
+		  -- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
+		  keymaps = {
+			  goto_next_usage = "gn",
+			  goto_previous_usage = "gN",
+		  },
+	  },
+  },
 }
