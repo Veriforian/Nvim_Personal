@@ -8,40 +8,28 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'eslint', 'tsserver', 'rust_analyzer'},
+  ensure_installed = {'tsserver', 'gopls'},
   handlers = {
     function(server_name) -- default handler (optional)
 
       require("lspconfig")[server_name].setup {
         capabilities = capabilities
       }
-     end,
-     ["lua_ls"] = function()
-       local lspconfig = require("lspconfig")
-       lspconfig.lua_ls.setup {
-         capabilities = capabilities,
-         settings = {
-           Lua = {
-             diagnostics = {
-               globals = { "vim", "it", "describe", "before_each", "after_each" },
-             }
-           }
-         }
-       }
-     end,
-     ["eslint"] = function()
-       local lspconfig = require("lspconfig")
-       lspconfig.eslint.setup{
-         on_attach = function(client, bufnr)
-           vim.api.nvim_create_autocmd("BufWritePre", {
-             buffer = bufnr,
-             command = "EslintFixAll",
-           })
-         end,
-       }
-     end,
-   }
- })
+    end,
+    ["tsserver"] = function()
+      local lspconfig = require("lspconfig")
+      lspconfig.tsserver.setup{
+        settings = {
+          javascript = {
+            format = {
+              semicolons = "insert"
+            }
+          }
+        }
+      }
+    end,
+  }
+})
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
@@ -50,8 +38,6 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     -- `Enter` key to confirm completion
     ['<CR>'] = cmp.mapping.confirm({select = false}),
-
-    -- Ctrl+Space to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
 
     -- Navigate between snippet placeholder
@@ -61,5 +47,19 @@ cmp.setup({
     -- Scroll up and down in the completion documentation
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
+
+    -- Intellij like mapping
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        local entry = cmp.get_selected_entry()
+        if not entry then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        else
+          cmp.confirm()
+        end
+      else
+        fallback()
+      end
+    end, {"i","s","c",}),
   })
 })
