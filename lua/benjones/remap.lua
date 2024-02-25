@@ -29,6 +29,9 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<leader>o", "o<Esc>k")
 vim.keymap.set("n", "<leader>O", "O<Esc>j")
 
+-- Exit Term mode and toggle floating terminal
+vim.keymap.set("t", "<C-t>", "<C-\\><C-n>:FloatermToggle<CR>")
+
 -- Get rid of EX mode
 vim.keymap.set("n", "Q", "<nop>")
 
