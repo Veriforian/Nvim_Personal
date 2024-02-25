@@ -120,6 +120,11 @@ _G.packer_plugins = {
     path = "/home/benjones/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["git-blame.nvim"] = {
+    loaded = true,
+    path = "/home/benjones/.local/share/nvim/site/pack/packer/start/git-blame.nvim",
+    url = "https://github.com/f-person/git-blame.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/benjones/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
