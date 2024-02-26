@@ -37,6 +37,8 @@ return require('packer').startup(function(use)
   use('lewis6991/gitsigns.nvim')
   use('f-person/git-blame.nvim')
   use('voldikss/vim-floaterm')
+  use('aserowy/tmux.nvim')
+  use('mg979/vim-visual-multi')
   
   use {
 	  "VonHeikemen/lsp-zero.nvim",
