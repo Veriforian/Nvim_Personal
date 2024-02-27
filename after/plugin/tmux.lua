@@ -1,1 +1,5 @@
-require("tmux").setup()
+require("tmux").setup{
+  navigation = {
+    enable_default_keybindings = false
+  }
+}

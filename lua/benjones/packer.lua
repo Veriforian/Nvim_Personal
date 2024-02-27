@@ -13,14 +13,7 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({
-	  'kepano/flexoki-neovim',
-	  as = 'flexoki',
-	  config = function()
-		  -- Set colorscheme after options
-		  vim.cmd('colorscheme flexoki-dark')
-	  end
-  })
+  use("olimorris/onedarkpro.nvim")
 
   use {
     'nvim-treesitter/nvim-treesitter',

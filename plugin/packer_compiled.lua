@@ -109,12 +109,6 @@ _G.packer_plugins = {
     path = "/home/benjones/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  flexoki = {
-    config = { "\27LJ\2\n<\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\29colorscheme flexoki-dark\bcmd\bvim\0" },
-    loaded = true,
-    path = "/home/benjones/.local/share/nvim/site/pack/packer/start/flexoki",
-    url = "https://github.com/kepano/flexoki-neovim"
-  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/benjones/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -165,6 +159,11 @@ _G.packer_plugins = {
     path = "/home/benjones/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["onedarkpro.nvim"] = {
+    loaded = true,
+    path = "/home/benjones/.local/share/nvim/site/pack/packer/start/onedarkpro.nvim",
+    url = "https://github.com/olimorris/onedarkpro.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/benjones/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -213,10 +212,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: flexoki
-time([[Config for flexoki]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\29colorscheme flexoki-dark\bcmd\bvim\0", "config", "flexoki")
-time([[Config for flexoki]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
