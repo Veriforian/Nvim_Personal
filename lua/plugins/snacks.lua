@@ -4,12 +4,12 @@ return {
     explorer = {
       hidden = true,
       ignored = true,
-      exclude = { ".git" },
+      exclude = { ".git", "node_modules", "coverage" },
     },
     picker = {
       hidden = true,
       ignored = true,
-      exclude = { ".git" },
+      exclude = { ".git", "node_modules", "coverage" },
     },
     terminal = {
       winbar = {

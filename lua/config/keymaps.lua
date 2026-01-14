@@ -20,6 +20,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- <C-c> mimics esc
 vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set("x", "<C-c>", "<Esc>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>*", "*``")
 
@@ -29,6 +30,12 @@ vim.keymap.set("n", "<leader>O", "O<Esc>j")
 
 -- Get rid of EX mode
 vim.keymap.set("n", "Q", "<nop>")
+
+-- Unsetting defaults that conflict with preferred plugins
+vim.keymap.set("n", "<C-m>", "<nop>")
+vim.keymap.set("n", "<C-d>", "<nop>")
+vim.keymap.set("v", "<C-m>", "<nop>")
+vim.keymap.set("v", "<C-d>", "<nop>")
 
 vim.keymap.set("t", "<C-c>", "<C-c><C-c>", { desc = "Exit terminal insert mode" })
 
