@@ -24,3 +24,19 @@ vim.api.nvim_create_user_command("CopyRelativePath", function(context)
   vim.fn.setreg("+", relative_path)
   vim.print("Relative path copied to clipboard: " .. relative_path)
 end, { nargs = 0, desc = "Copy relative path from project root to clipboard" })
+
+-- Disable diagnostics for .env files
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { ".env*", "*.md" },
+  group = vim.api.nvim_create_augroup("DisableDiagnostics", { clear = true }),
+  callback = function()
+    if vim.diagnostic.enable then
+      -- Handling for newer nvim
+      vim.diagnostic.enable(false, { bufnr = 0 })
+    else
+      -- Handling for older nvim
+      ---@diagnostic disable: deprecated
+      vim.diagnostic.disable(0)
+    end
+  end,
+})

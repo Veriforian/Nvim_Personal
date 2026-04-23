@@ -64,9 +64,4 @@ for _, keymap in ipairs(dapbp_keymaps) do
   vim.keymap.set("n", keymap[1], keymap[2], { desc = keymap.desc })
 end
 
-vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
-
-vim.keymap.set({ "n", "t" }, "<C-_>", function()
-  local count = vim.v.count1
-  require("toggleterm").toggle(count, vim.o.columns * 0.4, LazyVim.root.get(), "vertical")
-end, { desc = "ToggleTerm Default vertical terminal", noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
