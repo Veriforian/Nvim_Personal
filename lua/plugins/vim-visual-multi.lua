@@ -12,7 +12,7 @@ return {
         ["Start Regex Search"] = "<C-m><C-/>",
         ["Add Cursor Down"] = "<C-m><C-j>",
         ["Add Cursor Up"] = "<C-m><C-k>",
-        ["Add Cursor At Pos"] = "<C-m><C-n>",
+        ["Add Cursor At Pos"] = "<C-m><C-p>",
         ["Visual Regex"] = "<C-m><C-/>",
         ["Visual All"] = "<C-m><C-A>",
         ["Visual Add"] = "<C-m><C-a>",
