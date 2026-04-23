@@ -1,7 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
-  opts = {
-    servers = {
+  opts = function(_, opts)
+    opts.servers = {
       ["*"] = {
         keys = {
           {
@@ -28,6 +28,33 @@ return {
           },
         },
       },
-    },
-  },
+      gopls = {
+        settings = {
+          gopls = {
+            ["local"] = "gitlab.com/trazi-ventures/white-label/services/standards",
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+            completeUnimported = true,
+            usePlaceholders = true,
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+          },
+        },
+      },
+    }
+    opts.lsp = {
+      signature = { auto_open = {
+        enabled = false,
+      } },
+    }
+  end,
 }
