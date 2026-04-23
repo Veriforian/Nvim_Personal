@@ -39,8 +39,8 @@ return {
       require("mason-nvim-dap").setup(LazyVim.opts("mason-nvim-dap.nvim"))
     end
 
+    -- Highlights
     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-
     for name, sign in pairs(LazyVim.config.icons.dap) do
       sign = type(sign) == "table" and sign or { sign }
       vim.fn.sign_define(
@@ -50,10 +50,54 @@ return {
     end
 
     -- setup dap config by VsCode launch.json file
+    local dap = require("dap")
     local vscode = require("dap.ext.vscode")
-    local json = require("plenary.json")
-    vscode.json_decode = function(str)
-      return vim.json.decode(json.json_strip_comments(str))
+
+    -- Hijack nvim-dap-ui listener
+    local dapui = require("dapui")
+    dap.listeners.after.event_initialized["dapui_config"] = function()
+      local session = dap.session()
+      if session and session.config.type == "go_tui" then
+        return -- Opens ternimal, not dapui
+      end
+
+      dapui.open()
     end
+
+    -- Custom Adapters
+    local Terminal = require("toggleterm.terminal").Terminal
+
+    -- GO TUI
+    dap.adapters.go_tui = function(callback, config)
+      local cmd = config.preLaunchTaskCmd or "make debug-server"
+      local tui_term = Terminal:new({
+        id = 99,
+        cmd = cmd,
+        direction = "float",
+        close_on_exit = true,
+        float_opts = {
+          border = "curved",
+          winblend = 0,
+        },
+        on_open = function()
+          vim.cmd("startinsert!")
+        end,
+      })
+
+      -- Wait for Go to compile, then yield back to DAP to execute the attach
+      -- 5000ms allows 'make debug-server' time to compile and bind the port
+      vim.defer_fn(function()
+        tui_term:open()
+        callback({
+          type = "server",
+          host = config.host or "127.0.0.1",
+          port = config.port or 38697,
+        })
+      end, 2500)
+    end
+
+    vscode.type_to_filetypes = {
+      go_tui = { "go" },
+    }
   end,
 }
