@@ -4,9 +4,10 @@ return {
   priority = 1000,
   opts = {
     explorer = {
+      follow = false,
       hidden = true,
       ignored = true,
-      exclude = { ".git", "node_modules", "coverage" },
+      exclude = { ".git", "coverage" },
     },
     picker = {
       hidden = true,
@@ -17,6 +18,11 @@ return {
       winbar = {
         enabled = false,
       },
+    },
+    image = {
+      enabled = true,
+      inline = false,
+      float = true,
     },
   },
 }

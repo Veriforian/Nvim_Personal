@@ -27,7 +27,7 @@ end, { nargs = 0, desc = "Copy relative path from project root to clipboard" })
 
 -- Disable diagnostics for .env files
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = { ".env*", "*.md" },
+  pattern = { "*.env*", "*.md" },
   group = vim.api.nvim_create_augroup("DisableDiagnostics", { clear = true }),
   callback = function()
     if vim.diagnostic.enable then
