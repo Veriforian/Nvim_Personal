@@ -39,29 +39,4 @@ vim.keymap.set("v", "<C-d>", "<nop>")
 
 vim.keymap.set("t", "<C-c>", "<C-c><C-c>", { desc = "Exit terminal insert mode" })
 
--- DAP Breakpoint keymaps
-local dapbp_api = require("dap-breakpoints.api")
-local dapbp_keymaps = {
-  { "<leader>dts", dapbp_api.set_breakpoint, desc = "Set Breakpoint" },
-  { "<leader>dtc", dapbp_api.set_conditional_breakpoint, desc = "Set Conditional Breakpoint" },
-  { "<leader>dth", dapbp_api.set_hit_condition_breakpoint, desc = "Set Hit Condition Breakpoint" },
-  { "<leader>dtl", dapbp_api.set_log_point, desc = "Set Log Point" },
-  { "<leader>dte", dapbp_api.edit_property, desc = "Edit Breakpoint Property" },
-  {
-    "<leader>dtE",
-    function()
-      dapbp_api.edit_property({ all = true })
-    end,
-    desc = "Edit All Breakpoint Properties",
-  },
-  { "<leader>dtv", dapbp_api.toggle_virtual_text, desc = "Toggle Breakpoint Virtual Text" },
-  { "<leader>dtC", dapbp_api.clear_all_breakpoints, desc = "Clear All Breakpoints" },
-  { "[b", dapbp_api.go_to_previous, desc = "Go to Previous Breakpoint" },
-  { "]b", dapbp_api.go_to_next, desc = "Go to Next Breakpoint" },
-  { "<M-b>", dapbp_api.popup_reveal, desc = "Reveal Breakpoint" },
-}
-for _, keymap in ipairs(dapbp_keymaps) do
-  vim.keymap.set("n", keymap[1], keymap[2], { desc = keymap.desc })
-end
-
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
