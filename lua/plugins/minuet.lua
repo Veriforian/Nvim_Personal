@@ -68,7 +68,7 @@ return {
         },
       },
 
-      provider = "gemini",
+      provider = "codestral",
       -- the maximum total characters of the context before and after the cursor
       -- 16000 characters typically equate to approximately 4,000 tokens for
       -- LLMs.
@@ -141,6 +141,12 @@ return {
       enable_predicates = {},
       -- see the documentation in each provider in the following part.
       provider_options = {
+        codestral = {
+          model = "codestral-latest",
+          end_point = "https://codestral.mistral.ai/v1/fim/completions",
+          api_key = "CODESTRAL_API_KEY",
+          stream = true,
+        },
         gemini = {
           model = "gemini-2.5-flash-lite",
           stream = true,

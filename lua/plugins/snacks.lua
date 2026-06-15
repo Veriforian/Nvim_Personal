@@ -21,8 +21,12 @@ return {
     },
     image = {
       enabled = true,
-      inline = false,
-      float = true,
+      doc = {
+        enabled = true,
+        inline = true,
+        float = true,
+        render_all = true,
+      },
     },
   },
 }
